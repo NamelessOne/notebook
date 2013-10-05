@@ -10,6 +10,10 @@ import java.util.Scanner;
 public class UI {
     private Scanner in = new Scanner(System.in);
 
+    /**
+     * Show main menu.
+     * @throws IOException
+     */
     public void showMainMenu() throws IOException {
         while (true) {
             System.out.println("****************MENU*****************");
@@ -18,6 +22,7 @@ public class UI {
             System.out.println("**************************************");
             System.out.println("Selection: ");
             int input = in.nextInt();
+            in.nextLine();
             switch (input) {
                 case 1:
                     //TODO добавление контакта
@@ -52,10 +57,13 @@ public class UI {
         }
     }
 
+    /**
+     * Show adding contact menu
+     */
     public void showAddContactMenu() {
         System.out.println("****************Add Contact*****************");
         System.out.print("Name: ");
-        String name = in.next();
+        String name = in.nextLine();
         System.out.print("Phone: ");
         String phone = in.next();
         System.out.print("e-mail: ");
@@ -63,9 +71,11 @@ public class UI {
         System.out.println("**************************************");
         ContactEntity contact = new ContactEntity(name, phone, email);
         NotesCollection.getInstance().getContacts().add(contact);
-        NotesCollection.getInstance().saveToJsonFile();
     }
 
+    /**
+     * Show search menu.
+     */
     public void showSearchContactMenu() {
         System.out.println("****************Search Contact*****************");
         System.out.print("Name: ");
@@ -76,8 +86,10 @@ public class UI {
         }
     }
 
-    public void showDeleteContactMenu()
-    {
+    /**
+     * Show delete contact menu.
+     */
+    public void showDeleteContactMenu() {
         NotesCollection.getInstance().showAll();
         System.out.println("**************************************");
         System.out.println("Enter number of contact that must be removed: ");

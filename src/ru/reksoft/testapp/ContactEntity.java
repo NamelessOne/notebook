@@ -1,8 +1,8 @@
 package ru.reksoft.testapp;
 
 /**
- * Контакт из записной книжки.
- * Включает имя, телефонный номер и e-mail адрес.
+ * Contact from notebook.
+ * Contains name (String), phone number (String), email address (String)
  */
 public class ContactEntity {
     private String name;
@@ -40,7 +40,8 @@ public class ContactEntity {
     }
 
     public String toString() {
-        String s = this.getName() + " " + this.getPhoneNumber() + " " + this.getEmailAddress();
+        //TODO сделать нормальное форматирование
+        String s = this.getName() + " | " + this.getPhoneNumber() + " | " + this.getEmailAddress();
         return s;
     }
 }
