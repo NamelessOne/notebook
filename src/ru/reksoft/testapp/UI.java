@@ -1,6 +1,7 @@
 package ru.reksoft.testapp;
 
 import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -12,6 +13,7 @@ public class UI {
 
     /**
      * Show main menu.
+     *
      * @throws IOException
      */
     public void showMainMenu() throws IOException {
@@ -21,7 +23,12 @@ public class UI {
                     "[5] Save changes and exit \n[6] Exit without saving");
             System.out.println("**************************************");
             System.out.println("Selection: ");
-            int input = in.nextInt();
+            int input = -1;
+            try {
+                input = in.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Wrong input.");
+            }
             in.nextLine();
             switch (input) {
                 case 1:
@@ -51,6 +58,7 @@ public class UI {
                 default:
                     System.err.println("Unrecognized option");
             }
+
             System.out.println("**************************************");
             System.out.println("Press enter to continue");
             System.in.read();
@@ -93,7 +101,12 @@ public class UI {
         NotesCollection.getInstance().showAll();
         System.out.println("**************************************");
         System.out.println("Enter number of contact that must be removed: ");
+        try{
         int input = in.nextInt();
         NotesCollection.getInstance().getContacts().remove(input);
+        } catch (InputMismatchException e) {
+            System.out.println("Wrong input.");
+        }
+        in.nextLine();
     }
 }
