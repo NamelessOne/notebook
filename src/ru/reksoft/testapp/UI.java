@@ -73,9 +73,9 @@ public class UI {
         System.out.print("Name: ");
         String name = in.nextLine();
         System.out.print("Phone: ");
-        String phone = in.next();
+        String phone = in.nextLine();
         System.out.print("e-mail: ");
-        String email = in.next();
+        String email = in.nextLine();
         System.out.println("**************************************");
         ContactEntity contact = new ContactEntity(name, phone, email);
         NotesCollection.getInstance().getContacts().add(contact);
@@ -87,10 +87,14 @@ public class UI {
     public void showSearchContactMenu() {
         System.out.println("****************Search Contact*****************");
         System.out.print("Name: ");
-        String name = in.next();
+        String name = in.nextLine();
         List<ContactEntity> searchResults = NotesCollection.getInstance().search(name);
-        for (ContactEntity result : searchResults) {
-            System.out.println(result.toString());
+        if (searchResults.isEmpty()) {
+            System.out.print("No results found.");
+        } else {
+            for (ContactEntity result : searchResults) {
+                System.out.println(result.toString());
+            }
         }
     }
 
@@ -99,7 +103,7 @@ public class UI {
      */
     public void showDeleteContactMenu() {
         NotesCollection.getInstance().showAll();
-        if(NotesCollection.getInstance().getContacts().isEmpty()) return;
+        if (NotesCollection.getInstance().getContacts().isEmpty()) return;
         System.out.println("**************************************");
         System.out.println("Enter number of contact that must be removed: ");
         try {
@@ -107,8 +111,7 @@ public class UI {
             NotesCollection.getInstance().getContacts().remove(input);
         } catch (InputMismatchException e) {
             System.out.println("Wrong input.");
-        } catch (IndexOutOfBoundsException ex)
-        {
+        } catch (IndexOutOfBoundsException ex) {
             System.out.println("Wrong input.");
         }
         in.nextLine();
