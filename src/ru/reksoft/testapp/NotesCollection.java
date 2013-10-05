@@ -64,8 +64,12 @@ public class NotesCollection {
      * Show all elements.
      */
     public void showAll() {
-        for (ContactEntity c : contacts) {
-            System.out.println(contacts.indexOf(c) + " | " + c.toString());
+        if (contacts.isEmpty()) {
+            System.out.println("No contacts.");
+        } else {
+            for (ContactEntity c : contacts) {
+                System.out.println(contacts.indexOf(c) + " | " + c.toString());
+            }
         }
     }
 

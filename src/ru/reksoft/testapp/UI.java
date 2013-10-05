@@ -99,12 +99,16 @@ public class UI {
      */
     public void showDeleteContactMenu() {
         NotesCollection.getInstance().showAll();
+        if(NotesCollection.getInstance().getContacts().isEmpty()) return;
         System.out.println("**************************************");
         System.out.println("Enter number of contact that must be removed: ");
         try {
             int input = in.nextInt();
             NotesCollection.getInstance().getContacts().remove(input);
         } catch (InputMismatchException e) {
+            System.out.println("Wrong input.");
+        } catch (IndexOutOfBoundsException ex)
+        {
             System.out.println("Wrong input.");
         }
         in.nextLine();
