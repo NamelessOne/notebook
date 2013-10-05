@@ -64,7 +64,7 @@ public class NotesCollection {
      */
     public void showAll() {
         for (ContactEntity c : contacts) {
-            System.out.println(contacts.indexOf(c) + " " + c.toString());
+            System.out.println(contacts.indexOf(c) + " | " + c.toString());
         }
     }
 
