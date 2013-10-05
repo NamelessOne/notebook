@@ -101,9 +101,9 @@ public class UI {
         NotesCollection.getInstance().showAll();
         System.out.println("**************************************");
         System.out.println("Enter number of contact that must be removed: ");
-        try{
-        int input = in.nextInt();
-        NotesCollection.getInstance().getContacts().remove(input);
+        try {
+            int input = in.nextInt();
+            NotesCollection.getInstance().getContacts().remove(input);
         } catch (InputMismatchException e) {
             System.out.println("Wrong input.");
         }

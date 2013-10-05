@@ -39,6 +39,9 @@ public class ContactEntity {
         this.emailAddress = emailAddress;
     }
 
+    /**
+     * @return formatted string
+     */
     public String toString() {
         //TODO сделать нормальное форматирование
         String s = this.getName() + " | " + this.getPhoneNumber() + " | " + this.getEmailAddress();

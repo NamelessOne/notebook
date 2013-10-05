@@ -15,12 +15,13 @@ import java.util.List;
  * Contains collection of all notes in notebook.
  */
 public class NotesCollection {
+    final String DATA_FILE = "note.json";
     private List<ContactEntity> contacts = new ArrayList<ContactEntity>();
     private Type contactsListType = new TypeToken<List<ContactEntity>>() {
     }.getType();
     private static NotesCollection instance;
 
-    private NotesCollection() throws IOException {
+    private NotesCollection() {
         loadFromJsonFile();
     }
 
@@ -31,9 +32,13 @@ public class NotesCollection {
     /**
      * Load list of notes from Json file.
      */
-    public void loadFromJsonFile() throws IOException {
-        FileReader fileReader = new FileReader("notes.json");
-        contacts = new Gson().fromJson(fileReader, contactsListType);
+    public void loadFromJsonFile() {
+        try {
+            FileReader fileReader = new FileReader(DATA_FILE);
+            contacts = new Gson().fromJson(fileReader, contactsListType);
+        } catch (IOException e) {
+            System.out.println("Cannot load json file. Will create new.");
+        }
     }
 
     /**
@@ -41,7 +46,7 @@ public class NotesCollection {
      */
     public void saveToJsonFile() {
         try {
-            FileWriter fileWriter = new FileWriter("notes.json");
+            FileWriter fileWriter = new FileWriter(DATA_FILE);
             fileWriter.write(new Gson().toJson(contacts, contactsListType));
             fileWriter.close();
         } catch (IOException e) {
@@ -51,11 +56,7 @@ public class NotesCollection {
 
     public static NotesCollection getInstance() {
         if (instance == null)
-            try {
-                instance = new NotesCollection();
-            } catch (IOException e) {
-                System.out.println("Error when load json file.");
-            }
+            instance = new NotesCollection();
         return instance;
     }
 
@@ -77,7 +78,7 @@ public class NotesCollection {
     public List<ContactEntity> search(String name) {
         List<ContactEntity> result = new ArrayList<ContactEntity>();
         for (ContactEntity c : contacts) {
-            if (c.getName().contains(name))
+            if (c.getName().toLowerCase().contains(name.toLowerCase()))
                 result.add(c);
         }
         return result;
