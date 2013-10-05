@@ -70,8 +70,17 @@ public class UI {
      */
     public void showAddContactMenu() {
         System.out.println("****************Add Contact*****************");
-        System.out.print("Name: ");
-        String name = in.nextLine();
+        boolean success = false;
+        String name = "";
+        while (!success) {
+            System.out.print("Name: ");
+            name = in.nextLine();
+            if (name.length() == 0) {
+                System.out.println("No empty name allowed. Please try again.");
+            } else {
+                success = true;
+            }
+        }
         System.out.print("Phone: ");
         String phone = in.nextLine();
         System.out.print("e-mail: ");
