@@ -70,16 +70,11 @@ public class UI {
      */
     public void showAddContactMenu() {
         System.out.println("****************Add Contact*****************");
-        boolean success = false;
         String name = "";
-        while (!success) {
+        System.out.print("Name: ");
+        while ((name = in.nextLine()).length() == 0) {
+            System.out.println("No empty name allowed. Please try again.");
             System.out.print("Name: ");
-            name = in.nextLine();
-            if (name.length() == 0) {
-                System.out.println("No empty name allowed. Please try again.");
-            } else {
-                success = true;
-            }
         }
         System.out.print("Phone: ");
         String phone = in.nextLine();
