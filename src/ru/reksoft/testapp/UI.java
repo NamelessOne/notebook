@@ -22,7 +22,7 @@ public class UI {
             System.out.println("[1] Add Contact\n[2] Show all contacts \n[3] Search contact (by name) \n[4] Remove contact \n" +
                     "[5] Save changes \n[6] Save changes and exit \n" +
                     "[7] Exit without saving");
-            System.out.println("**************************************");
+            System.out.println("******************************************");
             System.out.println("Selection: ");
             int input = -1;
             try {
@@ -36,7 +36,7 @@ public class UI {
                     showAddContactMenu();
                     break;
                 case 2:
-                    showAllContacts();
+                    showContacts(NotesCollection.getInstance().getContacts(), "List is empty.");
                     break;
                 case 3:
                     showSearchContactMenu();
@@ -58,7 +58,7 @@ public class UI {
                     System.err.println("Unrecognized option");
             }
 
-            System.out.println("**************************************");
+            System.out.println("******************************************");
             System.out.println("Press enter to continue");
             System.in.read();
         }
@@ -79,7 +79,7 @@ public class UI {
         String phone = in.nextLine();
         System.out.print("e-mail: ");
         String email = in.nextLine();
-        System.out.println("**************************************");
+        System.out.println("******************************************");
         ContactEntity contact = new ContactEntity(name, phone, email);
         NotesCollection.getInstance().getContacts().add(contact);
     }
@@ -88,24 +88,18 @@ public class UI {
      * Show search menu.
      */
     public void showSearchContactMenu() {
-        System.out.println("****************SEARCH*****************");
+        System.out.println("********************SEARCH****************");
         System.out.print("Name: ");
         String name = in.nextLine();
         List<ContactEntity> searchResults = NotesCollection.getInstance().search(name);
-        if (searchResults.isEmpty()) {
-            System.out.print("No results found.");
-        } else {
-            for (ContactEntity result : searchResults) {
-                System.out.println(result.toString());
-            }
-        }
+        showContacts(searchResults, "No results found.");
     }
 
     /**
      * Show delete contact menu.
      */
     public void showDeleteContactMenu() {
-        showAllContacts();
+        showContacts(NotesCollection.getInstance().getContacts(), "List is empty.");
         if (NotesCollection.getInstance().getContacts().isEmpty()) return;
         System.out.println("******************REMOVE CONTACT********************");
         System.out.println("Enter number of contact that must be removed: ");
@@ -121,17 +115,18 @@ public class UI {
     }
 
     /**
-     * Show list of contacts
+     * @param contacts List of contacts.
+     * @param emptyMessage Message that shown if list is empty.
      */
-    public void showAllContacts()
+    public void showContacts(List<ContactEntity> contacts, String emptyMessage)
     {
-        if (NotesCollection.getInstance().getContacts().isEmpty()) {
-            System.out.println("No contacts.");
+        if (contacts.isEmpty()) {
+            System.out.println(emptyMessage);
         } else {
             System.out.println(String.format("%-5s%-25s%-20s%-25s", "№", "| " + "Name", "| " + "Phone number", "| " + "E-mail"));
             System.out.println("----------------------------------------------------------------------");
-            for (ContactEntity c : NotesCollection.getInstance().getContacts()) {
-                System.out.println(String.format("%-5s%-70s", NotesCollection.getInstance().getContacts().indexOf(c), c.toString()));
+            for (ContactEntity c : contacts) {
+                System.out.println(String.format("%-5s%-70s", contacts.indexOf(c), c.toString()));
             }
         }
     }
