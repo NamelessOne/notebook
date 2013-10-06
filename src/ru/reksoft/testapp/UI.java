@@ -20,7 +20,8 @@ public class UI {
         while (true) {
             System.out.println("****************MENU*****************");
             System.out.println("[1] Add Contact\n[2] Show all contacts \n[3] Search contact (by name) \n[4] Remove contact \n" +
-                    "[5] Save changes and exit \n[6] Exit without saving");
+                    "[5] Save changes \n[6] Save changes and exit \n" +
+                    "[7] Exit without saving");
             System.out.println("**************************************");
             System.out.println("Selection: ");
             int input = -1;
@@ -32,27 +33,25 @@ public class UI {
             in.nextLine();
             switch (input) {
                 case 1:
-                    //TODO добавление контакта
                     showAddContactMenu();
                     break;
                 case 2:
-                    //TODO показать все контакты
                     NotesCollection.getInstance().showAll();
                     break;
                 case 3:
-                    //TODO поиск контакта
                     showSearchContactMenu();
                     break;
                 case 4:
-                    //TODO удаление контакта
                     showDeleteContactMenu();
                     break;
                 case 5:
-                    //TODO выход из программы
+                    NotesCollection.getInstance().saveToJsonFile();
+                    break;
+                case 6:
                     NotesCollection.getInstance().saveToJsonFile();
                     System.exit(0);
-                case 6:
-                    //TODO выход из программы
+                    break;
+                case 7:
                     System.exit(0);
                     break;
                 default:
@@ -108,7 +107,7 @@ public class UI {
     public void showDeleteContactMenu() {
         NotesCollection.getInstance().showAll();
         if (NotesCollection.getInstance().getContacts().isEmpty()) return;
-        System.out.println("**************************************");
+        System.out.println("******************Remove contact********************");
         System.out.println("Enter number of contact that must be removed: ");
         try {
             int input = in.nextInt();

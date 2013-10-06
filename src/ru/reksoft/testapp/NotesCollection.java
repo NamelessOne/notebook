@@ -37,7 +37,7 @@ public class NotesCollection {
             FileReader fileReader = new FileReader(DATA_FILE);
             contacts = new Gson().fromJson(fileReader, contactsListType);
         } catch (IOException e) {
-            System.out.println("Cannot load json file. Will create new.");
+            System.out.println("Cannot load json file. New file will be created.");
         }
     }
 
@@ -67,8 +67,10 @@ public class NotesCollection {
         if (contacts.isEmpty()) {
             System.out.println("No contacts.");
         } else {
+            System.out.println(String.format("%-5s%-50s%-20s%-45s", "№", " | " + "Name", " | " + "Phone number", " | " + "E-mail"));
+            System.out.println("------------------------------------------------------------------------------------------------------------------------");
             for (ContactEntity c : contacts) {
-                System.out.println(contacts.indexOf(c) + " | " + c.toString());
+                System.out.println(String.format("%-5s%-115s", contacts.indexOf(c), c.toString()));
             }
         }
     }

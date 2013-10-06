@@ -1,6 +1,7 @@
 package ru.reksoft.testapp;
 
 import java.io.IOException;
+import java.util.NoSuchElementException;
 
 public class Main {
 
@@ -9,6 +10,7 @@ public class Main {
             new UI().showMainMenu();
         } catch (IOException e) {
             System.out.println("IO exception.");
+        } catch (NoSuchElementException e) {
         }
     }
 }

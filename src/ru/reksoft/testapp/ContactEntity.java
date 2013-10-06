@@ -40,11 +40,11 @@ public class ContactEntity {
     }
 
     /**
-     * @return formatted string
+     * @return string formatted for table output
      */
     public String toString() {
         //TODO сделать нормальное форматирование
-        String s = this.getName() + " | " + this.getPhoneNumber() + " | " + this.getEmailAddress();
+        String s = String.format("%-50s%-20s%-50s", " | " + this.getName(), " | " + this.getPhoneNumber(), " | " + this.getEmailAddress());
         return s;
     }
 }
