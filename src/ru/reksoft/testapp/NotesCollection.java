@@ -61,21 +61,6 @@ public class NotesCollection {
     }
 
     /**
-     * Show all elements.
-     */
-    public void showAll() {
-        if (contacts.isEmpty()) {
-            System.out.println("No contacts.");
-        } else {
-            System.out.println(String.format("%-5s%-50s%-20s%-45s", "№", " | " + "Name", " | " + "Phone number", " | " + "E-mail"));
-            System.out.println("------------------------------------------------------------------------------------------------------------------------");
-            for (ContactEntity c : contacts) {
-                System.out.println(String.format("%-5s%-115s", contacts.indexOf(c), c.toString()));
-            }
-        }
-    }
-
-    /**
      * Search element by name in the list.
      *
      * @param name - name of searched element

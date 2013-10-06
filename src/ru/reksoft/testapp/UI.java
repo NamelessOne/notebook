@@ -18,7 +18,7 @@ public class UI {
      */
     public void showMainMenu() throws IOException {
         while (true) {
-            System.out.println("****************MENU*****************");
+            System.out.println("****************MAIN MENU*****************");
             System.out.println("[1] Add Contact\n[2] Show all contacts \n[3] Search contact (by name) \n[4] Remove contact \n" +
                     "[5] Save changes \n[6] Save changes and exit \n" +
                     "[7] Exit without saving");
@@ -36,7 +36,7 @@ public class UI {
                     showAddContactMenu();
                     break;
                 case 2:
-                    NotesCollection.getInstance().showAll();
+                    showAllContacts();
                     break;
                 case 3:
                     showSearchContactMenu();
@@ -68,7 +68,7 @@ public class UI {
      * Show adding contact menu
      */
     public void showAddContactMenu() {
-        System.out.println("****************Add Contact*****************");
+        System.out.println("****************ADD CONTACT*****************");
         String name = "";
         System.out.print("Name: ");
         while ((name = in.nextLine()).length() == 0) {
@@ -88,7 +88,7 @@ public class UI {
      * Show search menu.
      */
     public void showSearchContactMenu() {
-        System.out.println("****************Search Contact*****************");
+        System.out.println("****************SEARCH*****************");
         System.out.print("Name: ");
         String name = in.nextLine();
         List<ContactEntity> searchResults = NotesCollection.getInstance().search(name);
@@ -105,9 +105,9 @@ public class UI {
      * Show delete contact menu.
      */
     public void showDeleteContactMenu() {
-        NotesCollection.getInstance().showAll();
+        showAllContacts();
         if (NotesCollection.getInstance().getContacts().isEmpty()) return;
-        System.out.println("******************Remove contact********************");
+        System.out.println("******************REMOVE CONTACT********************");
         System.out.println("Enter number of contact that must be removed: ");
         try {
             int input = in.nextInt();
@@ -118,5 +118,21 @@ public class UI {
             System.out.println("Wrong input.");
         }
         in.nextLine();
+    }
+
+    /**
+     * Show list of contacts
+     */
+    public void showAllContacts()
+    {
+        if (NotesCollection.getInstance().getContacts().isEmpty()) {
+            System.out.println("No contacts.");
+        } else {
+            System.out.println(String.format("%-5s%-25s%-20s%-25s", "№", "| " + "Name", "| " + "Phone number", "| " + "E-mail"));
+            System.out.println("----------------------------------------------------------------------");
+            for (ContactEntity c : NotesCollection.getInstance().getContacts()) {
+                System.out.println(String.format("%-5s%-70s", NotesCollection.getInstance().getContacts().indexOf(c), c.toString()));
+            }
+        }
     }
 }

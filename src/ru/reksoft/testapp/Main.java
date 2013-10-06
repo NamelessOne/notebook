@@ -10,7 +10,6 @@ public class Main {
             new UI().showMainMenu();
         } catch (IOException e) {
             System.out.println("IO exception.");
-        } catch (NoSuchElementException e) {
         }
     }
 }

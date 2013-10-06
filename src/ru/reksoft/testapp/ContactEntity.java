@@ -44,7 +44,7 @@ public class ContactEntity {
      */
     public String toString() {
         //TODO сделать нормальное форматирование
-        String s = String.format("%-50s%-20s%-50s", " | " + this.getName(), " | " + this.getPhoneNumber(), " | " + this.getEmailAddress());
+        String s = String.format("%-25s%-20s%-25s", "| " + this.getName(), "| " + this.getPhoneNumber(), "| " + this.getEmailAddress());
         return s;
     }
 }
