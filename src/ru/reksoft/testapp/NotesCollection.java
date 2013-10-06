@@ -64,7 +64,7 @@ public class NotesCollection {
      * Search element by name in the list.
      *
      * @param name - name of searched element
-     * @return element that name contains target string
+     * @return elements that name contains target string
      */
     public List<ContactEntity> search(String name) {
         List<ContactEntity> result = new ArrayList<ContactEntity>();

@@ -57,7 +57,6 @@ public class UI {
                 default:
                     System.err.println("Unrecognized option");
             }
-
             System.out.println("******************************************");
             System.out.println("Press enter to continue");
             System.in.read();
@@ -67,7 +66,7 @@ public class UI {
     /**
      * Show adding contact menu
      */
-    public void showAddContactMenu() {
+    private void showAddContactMenu() {
         System.out.println("****************ADD CONTACT*****************");
         String name = "";
         System.out.print("Name: ");
@@ -87,7 +86,7 @@ public class UI {
     /**
      * Show search menu.
      */
-    public void showSearchContactMenu() {
+    private void showSearchContactMenu() {
         System.out.println("********************SEARCH****************");
         System.out.print("Name: ");
         String name = in.nextLine();
@@ -98,7 +97,7 @@ public class UI {
     /**
      * Show delete contact menu.
      */
-    public void showDeleteContactMenu() {
+    private void showDeleteContactMenu() {
         showContacts(NotesCollection.getInstance().getContacts(), "List is empty.");
         if (NotesCollection.getInstance().getContacts().isEmpty()) return;
         System.out.println("******************REMOVE CONTACT********************");
@@ -118,7 +117,7 @@ public class UI {
      * @param contacts List of contacts.
      * @param emptyMessage Message that shown if list is empty.
      */
-    public void showContacts(List<ContactEntity> contacts, String emptyMessage)
+    private void showContacts(List<ContactEntity> contacts, String emptyMessage)
     {
         if (contacts.isEmpty()) {
             System.out.println(emptyMessage);
